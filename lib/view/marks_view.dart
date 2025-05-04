@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_guess_the_number/view_model.dart';
+import '../viewmodel/view_model.dart';
 
 class MarksView extends StatelessWidget {
   const MarksView({super.key});
