@@ -9,7 +9,7 @@ class MarksView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Top Scores"),
+        title: const Text("Top 5 Scores"),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Consumer<ViewModel>(
@@ -50,7 +50,10 @@ class MarksView extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  trailing: const Icon(Icons.star, color: Colors.amber),
+                  trailing: Icon(
+                    index == 0 ? Icons.emoji_events : Icons.star,
+                    color: index == 0 ? Colors.amber : Colors.amber.shade300,
+                  ),
                 ),
               );
             },

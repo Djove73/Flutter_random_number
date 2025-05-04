@@ -21,9 +21,13 @@ class SliderWidget extends StatefulWidget {
 }
 
 class _SliderWidgetState extends State<SliderWidget> {
-  double _value = 50;
-  final double _MIN_VALUE = 1.0;
-  final double _MAX_VALUE = 100.0;
+  late double _value;
+
+  @override
+  void initState() {
+    super.initState();
+    _value = widget.value;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,9 @@ class _SliderWidgetState extends State<SliderWidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(height: 100),
           Text("🎯🎯🎯🎯", style: Theme.of(context).textTheme.headlineMedium),
+          const SizedBox(height: 20),
           Text(
             "${appState.targetValue}",
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
@@ -40,15 +46,17 @@ class _SliderWidgetState extends State<SliderWidget> {
               fontWeight: FontWeight.bold,
             ),
           ),
+          const SizedBox(height: 40),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Slider(
               value: _value,
               onChanged: _onChanged,
-              min: _MIN_VALUE,
-              max: _MAX_VALUE,
+              min: widget.min,
+              max: widget.max,
             ),
           ),
+          const SizedBox(height: 40),
           ElevatedButton(
             onPressed: _onPressed,
             style: ElevatedButton.styleFrom(
@@ -74,6 +82,7 @@ class _SliderWidgetState extends State<SliderWidget> {
     setState(() {
       _value = value;
     });
+    widget.onChanged(value);
   }
 
   void _onPressed() {
@@ -89,6 +98,7 @@ class _SliderWidgetState extends State<SliderWidget> {
             onPressed: () {
               setState(() {
                 appState.reset();
+                _value = widget.value; // Reset to initial value
               });
               Navigator.pop(context);
             },

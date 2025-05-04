@@ -35,11 +35,18 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          const BackgroundView(),
-          const SliderWidget(),
-        ],
+      body: SafeArea(
+        child: Stack(
+          children: [
+            const BackgroundView(),
+            SliderWidget(
+              value: 50,
+              min: 1,
+              max: 100,
+              onChanged: (value) {},
+            ),
+          ],
+        ),
       ),
     );
   }
